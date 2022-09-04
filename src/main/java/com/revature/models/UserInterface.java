@@ -6,6 +6,8 @@ public interface UserInterface {
 
 	User login(String username, String password) throws UserNotFoundException;
 	
+	User createAccount(String firstName, String lastName, String username, String password, String email);
+	
 	boolean logout();
 	
 	boolean deleteAccount();

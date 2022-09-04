@@ -10,7 +10,8 @@ public interface UserDaoInterface {
 	
 //	CREATE
 	
-	User createUser(User newUser);
+	User createUser(String firstName, String lastName, String username, String password, String email);
+//	User createUser(User newUser);
 	
 //	READ
 	
@@ -27,5 +28,7 @@ public interface UserDaoInterface {
 	User deleteUser(User deletedUser);
 
 	User selectUserByID(Integer userID);
+
+	
 	
 }

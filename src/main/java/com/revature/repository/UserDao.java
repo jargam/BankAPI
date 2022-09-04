@@ -27,19 +27,47 @@ public class UserDao implements UserDaoInterface{
 	}
 
 	public User createUser(User newUser) {
-		// TODO Auto-generated method stub
-		return null;
+		User user = null;
+		
+		final String sql = "INSERT INTO users(user_id, first_name, last_name, username, password, email) VALUES (nextval (\'userSeq\'),?, ?, ?, ?, ?);";
+		
+		try (	Connection connection = DriverManager.getConnection(
+				"jdbc:postgresql://database-1.ccmfvntumpjm.us-east-1.rds.amazonaws.com:5432/postgres",
+				"postgres",
+				"6880Excelsior!");
+				Statement statement = connection.createStatement();)
+		{
+		
+			ResultSet set = statement.executeQuery(sql);
+			
+		if(set.next()) {
+			user = new Member(
+					set.getInt(1),
+					set.getString(2),
+					set.getString(3),
+					set.getString(4),
+					set.getString(5),
+					set.getString(6)
+					);
+		}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return user;
 	}
 
 	public User getUser(String username, String password) throws UserNotFoundException{
 		
 		consoleLogger.debug("Getting User with username: " + username);
+		fileLogger.debug("Retrieved username from Database");
 		consoleLogger.debug("Getting User with password: " + password);
-		fileLogger.debug("Retrieved User from Database");
+		fileLogger.debug("Retrieved password from Database");
 		
 		User user = null;
 		
-		final String sql = "SELECT * FROM users WHERE username = '"+username+"' AND password ='"+password+"';"; 
+		final String sql = "SELECT * FROM users WHERE username = '"+username+"' AND password = '"+password+"';"; 
 		
 		try (Connection connection = ConnectionFactory.getConnection();
 				Statement statement = connection.createStatement();)
@@ -121,6 +149,12 @@ public class UserDao implements UserDaoInterface{
 		}
 		
 		return user;
+	}
+
+	@Override
+	public User createUser(String firstName, String lastName, String username, String password, String email) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

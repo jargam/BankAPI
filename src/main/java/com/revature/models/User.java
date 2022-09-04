@@ -15,10 +15,6 @@ public abstract class User {
 	protected String password;
 	
 	protected String email;
-	
-	public User( ) {
-		super();
-	}
 
 	public User(Integer userID, String firstName, String lastName, String username, String password, String email) {
 		super();

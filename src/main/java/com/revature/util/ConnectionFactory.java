@@ -13,5 +13,10 @@ public class ConnectionFactory {
 				"6880Excelsior!"
 				);
 	}
+
+	public static ConnectionFactory getInstance() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

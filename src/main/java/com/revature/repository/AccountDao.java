@@ -69,8 +69,8 @@ public class AccountDao implements AccountDaoInterface{
 	public void updateAccountOwner(Account account, UserDTO member) {
 		// TODO Auto-generated method stub
 		
-		consoleLogger.debug("Updating Account: " + account);
-		fileLogger.debug("Account Updated");
+		consoleLogger.debug("Updating Account Owner: " + account);
+		fileLogger.debug("Account Owner Updated");
 		
 		final String SQL = "INSERT INTO user_role_bridge(user_id, account_id) values (?, ?);";	
 	
